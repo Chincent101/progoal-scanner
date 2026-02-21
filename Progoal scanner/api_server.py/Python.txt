@@ -1,0 +1,30 @@
+from fastapi import FastAPI
+
+app = FastAPI()
+
+@app.get("/status")
+def status():
+    return {"status": "running"}
+
+@app.get("/predictions/daily")
+def daily_predictions():
+    return [
+        {
+            "match": "Team A vs Team B",
+            "prediction": "Over 1.5 Goals",
+            "confidence": 87,
+            "league": "Sample League"
+        }
+    ]
+
+@app.get("/jackpot")
+def jackpot(picks: int = 20):
+    results = []
+    for i in range(picks):
+        results.append({
+            "rank": i + 1,
+            "match": f"Match {i+1}",
+            "prediction": "Home Win",
+            "confidence": 80 + (i % 10)
+        })
+    return results

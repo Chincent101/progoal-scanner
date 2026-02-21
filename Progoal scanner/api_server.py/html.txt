@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>ProGoal Scanner</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+<h2>ProGoal Scanner</h2>
+<div id="data">Loading...</div>
+
+<script>
+fetch("/predictions/daily")
+.then(res => res.json())
+.then(data => {
+    document.getElementById("data").innerHTML =
+        JSON.stringify(data, null, 2);
+});
+</script>
+</body>
+</html>
